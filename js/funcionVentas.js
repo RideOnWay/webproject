@@ -1,3 +1,5 @@
+
+
 function easyTabs(){
   hora();
   easyTabs1();
@@ -149,11 +151,23 @@ function enlistar(selectid, tableid,num){
   
 }
 
+
+
 function price(intr){
-  if(snacks[intr]== undefined){
-    return drinks[intr]
+  alert("byhere");
+  // hacer la peticion por http
+
+  fetch('./objetosCafe.json') 
+  .then(resp => resp.json())
+  .then(data => console.log(data))
+  .catch(err => console.error(err))
+
+  const snackJson = require('./snacksobj.json');
+  alert(drinksJson);
+  if(snackJson [intr]== undefined){
+    return drinksJson[intr]
   }else{
-    return snacks[intr]
+    return snackJson [intr]
   }
 }
 

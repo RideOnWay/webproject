@@ -12,9 +12,9 @@ public class App
         myObject.put("last_name", "Carlos");
         
         // Valores primitivos
-        myObject.put("age", new Integer(21));
-        myObject.put("bank_account_balance", new Double(20.2));
-        myObject.put("is_developer", new Boolean(true));
+        myObject.put("age", 21);
+        myObject.put("bank_account_balance",20.2);
+        myObject.put("is_developer", true);
         
         // Matrices
         double[] myList = {1.9, 2.9, 3.4, 3.5};
