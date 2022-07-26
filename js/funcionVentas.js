@@ -1,8 +1,10 @@
+'use strict'
+let aux,nta;
 
-
-function easyTabs(){
+async function easyTabs(){
   hora();
   easyTabs1();
+ 
 }
 
 function allowDrop(ev) {
@@ -36,7 +38,7 @@ function eratabform(indetab){
   var quit;
   
     if (groups.length > 0) {
-      for (i = 0; i < groups.length; i++) {
+      for (let i = 0; i < groups.length; i++) {
         if(groups[i].id == indetab){
           forera[i].remove();
         }
@@ -151,24 +153,22 @@ function enlistar(selectid, tableid,num){
   
 }
 
-
-
-function price(intr){
-  alert("byhere");
-  // hacer la peticion por http
-
-  fetch('./objetosCafe.json') 
-  .then(resp => resp.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err))
-
-  const snackJson = require('./snacksobj.json');
-  alert(drinksJson);
-  if(snackJson [intr]== undefined){
-    return drinksJson[intr]
-  }else{
-    return snackJson [intr]
+async function fetchExam() {
+  try {
+      const response = await fetch('http://localhost:5500/js/objetosCafe.json', {
+          method: 'GET',
+          credentials: 'same-origin'
+      });
+      const exam = await response.json();
+      return exam;
+  } catch (error) {
+      console.error(error);
   }
+}
+
+async function price(intr){
+  
+  return exam[intr];
 }
 
 function eraseall(table1,table2){
@@ -186,7 +186,7 @@ function eraseall1( valor4) {
 
 function erase(valor3){
   if (valor3.length > 0) {
-    for (i = 0; i < valor3.length; i++) {      
+    for (let i = 0; i < valor3.length; i++) {      
       valor3[i].removeChild();
     }
   }
@@ -195,18 +195,18 @@ function erase(valor3){
 function easyTabs1() {
   
     var clicks = document.querySelectorAll('.t-tab');
-    for (i = 0; i < clicks.length; i++) {
-      if(i != clicks.length-1){
+    for (let i = 0; i < clicks.length; i++) {
+      if( i != clicks.length-1){
       clicks[i].onclick = function() {
         last = undefined;
         var tSiblings = this.parentElement.children;
-        for (i = 0; i < tSiblings.length; i++) {
+        for (let i = 0; i < tSiblings.length; i++) {
           tSiblings[i].className = "t-tab";
         }
         this.className = "t-tab selected";
         var idx = this.getAttribute("index");
         var cSiblings = document.querySelectorAll('.t-form');
-        for (i = 0; i < cSiblings.length; i++) {
+        for (let i = 0; i < cSiblings.length; i++) {
           cSiblings[i].className = "t-form";
           if (cSiblings[i].getAttribute("index") == idx) {
             cSiblings[i].className = "t-form selected";
@@ -229,7 +229,7 @@ function erasetab(){
 function totales(tdclass,lbltot){
   let suma = new Number();
    let totale = document.querySelectorAll(tdclass);
-   for (t = 0; t < totale.length; t++) {
+   for (let t = 0; t < totale.length; t++) {
     suma = parseInt(totale[t].innerHTML) +suma;
   }
   document.getElementById(lbltot).innerText= suma;
