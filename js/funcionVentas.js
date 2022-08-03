@@ -7,6 +7,7 @@ async function easyTabs() {
 
 }
 
+//Drag and drog functions
 function allowDrop(ev) {
   ev.preventDefault();
 
@@ -32,6 +33,7 @@ function drop(ev) {
 
 }
 
+//function to erase forms
 function eratabform(indetab) {
   var groups = document.querySelectorAll('.t-tab');
   let forera = document.querySelectorAll('.t-form');
@@ -46,6 +48,7 @@ function eratabform(indetab) {
   }
 }
 
+//hour
 function hora() {
   let hoy = new Date();
   let dhoy = hoy.getDate();
@@ -61,6 +64,7 @@ function hora() {
   var time = setTimeout(function () { hora() }, 500);
 }
 
+// new tab, begin on 4 
 function newtab() {
 
   if (typeof nta == 'undefined') {
@@ -86,7 +90,7 @@ function newtab() {
 
 }
 
-
+// new form and all its atributes
 function creaform(inc) {
   let formu = document.getElementById("formulario");
   let newformu = formu.cloneNode(true);
@@ -128,7 +132,7 @@ function creaform(inc) {
 
 }
 
-
+//new list with drinks or snacks objects
 async function enlistar(selectid, tableid, num) {
   let auz;
   let entrada = document.getElementById(selectid).value;
@@ -160,6 +164,7 @@ async function enlistar(selectid, tableid, num) {
 
 }
 
+//call the json archives to give price to list
 async function fetchExam(auz) {
 
   if (auz == 1) {
@@ -187,17 +192,20 @@ async function fetchExam(auz) {
   }
 }
 
+//select the correct list to load it up
 async function price(intr, auz) {
   let parts = await fetchExam(auz);
   return parts[intr];
 }
 
+//erase the lists, drink and snack
 function eraseall(table1, table2) {
   eraseall1(table1);
   eraseall1(table2);
 
 }
 
+//erase the list, drink or snack
 function eraseall1(valor4) {
   const list = document.getElementById(valor4);
   while (list.hasChildNodes()) {
@@ -213,6 +221,8 @@ function erase(valor3) {
   }
 }
 
+
+//oculta las pestañas no seleccionadas
 function easyTabs1() {
 
   var clicks = document.querySelectorAll('.t-tab');
@@ -238,15 +248,18 @@ function easyTabs1() {
   }
 }
 
+//last item selected
 function thear(event) {
   last = event.target.parentElement;
   document.getElementById(last.id).style.background = 'red';
 }
 
+//remove the last item selected
 function erasetab() {
   last.remove();
 }
 
+//get the total price of bill
 function totales(tdclass, lbltot) {
   let suma = new Number();
   let totale = document.querySelectorAll(tdclass);
@@ -256,11 +269,13 @@ function totales(tdclass, lbltot) {
   document.getElementById(lbltot).innerText = suma;
 }
 
-
+//add the number of items
+let sum2, active;
 function multi(event) {
   let sum3 = new Number();
   let sum1 = parseInt(event.target.value);
-  colum = event.target.parentElement.id;
+  let colum = event.target.parentElement.id;
+  
 
   if (typeof active == 'undefined' && typeof sum2 == 'undefined') {
     sum2 = parseInt(event.target.parentElement.previousElementSibling.innerHTML);
